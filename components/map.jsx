@@ -1,19 +1,51 @@
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-import { useEffect, useState } from 'react'
+import styled from 'styled-components';
+import t from 'prop-types';
 
-const position = [51.505, -0.09]
-const MapControl = () => {
-  return(
-    <Map center={position} zoom={13}>
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-      />
-      <Marker position={position}>
-        <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-      </Marker>
-    </Map>
-  );
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+
+  .leaflet-container {
+    height: 100%;
+    width: 100%;
+  }
+`;
+
+const position = [30, -10]
+const MapControl = ({ conferences }) => {
+  return (
+    <Container>
+      <Map center={position} zoom={3}>
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+        />
+        {conferences.map(({
+          coordinates,
+          url,
+          language,
+          name
+        }, index) => {
+          console.log({ coordinates, url, language });
+          return (
+            <Marker key={index} position={[coordinates.lat, coordinates.lng]}>
+              <Popup>
+                {name}
+                <br />
+                <a href={url}>{url}</a>
+                </Popup>
+            </Marker>
+          )
+        })}
+
+      </Map>
+    </Container>
+  )
 }
+
+MapControl.propTypes = {
+  conferences: t.array.isRequired,
+};
 
 export default MapControl;

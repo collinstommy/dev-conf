@@ -19,3 +19,5 @@ jspm_packages
 
 # Optional REPL history
 .next
+
+.env*
