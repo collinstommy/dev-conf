@@ -1,39 +1,30 @@
-import DevToTrends from '../components/devto.jsx';
 import fetch from 'isomorphic-unfetch';
-import * as data from '../data.json';
+import Head from 'next/head';
+import styled from 'styled-components';
+import dynamic from 'next/dynamic';
+import Map from '../components/map';
+import { useEffect, useState } from 'react'
 
-function Index({ articles }) {
-	console.log(articles);
+// const MapWithNoSSR = dynamic(() => import('../components/map'), {
+// 	ssr: false
+// });
+
+const Index = () => {
+	const [inBrowser, setBrowser] = useState();
+	useEffect(() => {
+		if (window) {
+			setBrowser(true);
+		}
+	});
 	return (
-		<DevToTrends articles={articles} />
+		<div>
+			<Map id="mapid" />;
+		</div>
 	);
 }
 
 Index.getInitialProps = async () => {
-	const apiUrl = 'https://dev.to/api/articles?top=30';
-
-	const getArticles = async function(page = 1) {
-		const url = `${apiUrl}?page=${page}&top=30`;
-		return await (await fetch(url)).json();
-	};
-
-	const getAllArticles = async function(page = 1) {
-		const results = await getArticles(page);
-		console.log({
-			length: results.length,
-			page
-		});
-		if (page > 5) return results;
-
-		if (results && results.length) {
-			return results.concat(await getAllArticles(page + 1));
-		} else {
-			return results;
-		}
-	};
-
-  const articles = data.default;
-	return { articles };
+	return {};
 };
 
 export default Index;
