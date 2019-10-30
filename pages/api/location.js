@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import geocodeApi from '../../lib/geocode-api';
+import geocodeApi from '../../data/geocode-api';
 
 dotenv.config();
 

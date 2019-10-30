@@ -1,6 +1,6 @@
 
-import GithubAPI from '../../lib/github-api';
-import geocodeApi from '../../lib/geocode-api';
+import GithubAPI from '../../data/github-api';
+import geocodeApi from '../../data/geocode-api';
 
 const GITHUB_DETAILS = {
   owner: 'tech-conferences',

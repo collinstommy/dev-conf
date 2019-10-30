@@ -2,7 +2,13 @@ import fetch from 'isomorphic-unfetch';
 import Redis from 'ioredis';
 
 export default async (url, cacheKey) => {
-  const redis = new Redis();
+  const { REDIS_PORT, REDIS_HOST } = process.env;
+  const redis = new Redis({
+    port: REDIS_PORT,
+    host: REDIS_HOST,
+  });
+  console.log('Connecting to redis', REDIS_PORT, REDIS_HOST);
+  
   const lookupKey = cacheKey || url;
   const cachedValue = await redis.get(lookupKey);
   if (!cachedValue) {

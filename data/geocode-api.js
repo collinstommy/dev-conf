@@ -26,3 +26,6 @@ export default async (locations) => {
   const locationRequests = locations.map(attachPlaceToRequest);
   return Promise.all(locationRequests);
 };
+
+// space out by 200ms
+// 
