@@ -10,7 +10,8 @@ module.exports = {
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly",
-        "React": "writable"
+        "React": "writable",
+        "process": "readonly"
     },
     "parserOptions": {
         "ecmaFeatures": {

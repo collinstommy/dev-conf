@@ -7,7 +7,6 @@ export default async (url, cacheKey) => {
     port: REDIS_PORT,
     host: REDIS_HOST,
   });
-  console.log('Connecting to redis', REDIS_PORT, REDIS_HOST);
   
   const lookupKey = cacheKey || url;
   const cachedValue = await redis.get(lookupKey);
@@ -16,6 +15,7 @@ export default async (url, cacheKey) => {
     await redis.set(lookupKey, JSON.stringify(data));
     return data;
   }
+  console.log(`Value from data layer: ${cachedValue}`);
   return JSON.parse(cachedValue);
 }
 

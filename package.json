@@ -1,5 +1,5 @@
 {
-  "name": "data-fetch",
+  "name": "dev-conf",
   "version": "1.0.0",
   "scripts": {
     "dev": "NODE_OPTIONS=\"--inspect\" next",

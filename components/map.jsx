@@ -27,17 +27,17 @@ const MapControl = ({ conferences }) => {
           language,
           name
         }, index) => {
-          console.log({ coordinates, url, language });
+          if(!coordinates.lat || !coordinates.lng) return null;
           return (
             <Marker key={index} position={[coordinates.lat, coordinates.lng]}>
               <Popup>
                 {name}
                 <br />
                 <a href={url}>{url}</a>
-                </Popup>
+              </Popup>
             </Marker>
           )
-        })}
+        }).filter(Boolean)}
 
       </Map>
     </Container>
