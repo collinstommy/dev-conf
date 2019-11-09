@@ -27,7 +27,7 @@ const MapControl = ({ conferences }) => {
           language,
           name
         }, index) => {
-          if(!coordinates.lat || !coordinates.lng) return null;
+          if(!coordinates || !coordinates.lat || !coordinates.lng) return null;
           return (
             <Marker key={index} position={[coordinates.lat, coordinates.lng]}>
               <Popup>
