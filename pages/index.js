@@ -10,7 +10,6 @@ const MapWithNoSSR = dynamic(() => import('../components/map'), {
 const Index = ({ conferences }) => {
 	return (
 		<main>
-			<h1>Dev Conferences Map</h1>
 			<MapWithNoSSR conferences={conferences} />
 		</main>
 	);
