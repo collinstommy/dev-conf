@@ -6,6 +6,7 @@ const MapWithNoSSR = dynamic(() => import('../components/map'), {
 	ssr: false
 });
 
+
 const Index = ({ conferences }) => {
 	return (
 		<main>
