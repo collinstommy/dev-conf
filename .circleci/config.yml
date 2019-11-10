@@ -8,17 +8,6 @@ jobs:
       - checkout
       - run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/home/circleci/deploy_project.sh"
 
-  build:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:7.10
-    working_directory: ~/repo
-    steps:
-      - checkout
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
 workflows:
   version: 2
