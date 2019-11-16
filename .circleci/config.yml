@@ -4,10 +4,9 @@ jobs:
     docker:
     # specify the version you desire here (you might not want node)
       - image: circleci/node:7.10
-    working_directory: ~/project
     steps:
       - checkout:
-          path: /project
+          path: /
       - run: cd /project && npm i && npm run build
       - run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/deploy_project.sh"
 
