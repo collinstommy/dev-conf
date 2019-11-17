@@ -7,6 +7,8 @@ jobs:
     steps:
       - checkout
       - run: npm i && npm run build
+      - run: scp -r .next/* $DROPLET_USER@$DROPLET_IP:/home/circleci
+
       #- run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/deploy_project.sh"
 
 workflows:
