@@ -6,9 +6,8 @@ jobs:
       - image: circleci/node:7.10
     steps:
       - checkout
-      - run: cd /project && npm i && npm run build
-      - run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/deploy_project.sh"
-
+      - run: npm i && npm run build
+      #- run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/deploy_project.sh"
 
 workflows:
   version: 2
