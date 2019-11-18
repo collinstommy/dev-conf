@@ -11,14 +11,12 @@ jobs:
     steps:
       - checkout
       - run:
-        command: |
-          npm i && npm run build
-          pwd
-          ls
-          scp -oStrictHostKeyChecking=no -r /home/circleci/project/.next/* $DROPLET_USER@$DROPLET_IP:/home/circleci/conf-hub/.next/
-          pm2 start --name "conf-hub" npm -- start
-
-      #- run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/deploy_project.sh"
+          command: |
+            npm i && npm run build
+            pwd
+            ls
+            scp -oStrictHostKeyChecking=no -r /home/circleci/project/.next/* $DROPLET_USER@$DROPLET_IP:/home/circleci/conf-hub/.next/
+            pm2 start --name "conf-hub" npm -- start
 
 workflows:
   version: 2
