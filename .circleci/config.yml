@@ -9,7 +9,7 @@ jobs:
       - run: npm i && npm run build
       - run: pwd
       - run: ls
-      - run: scp -oStrictHostKeyChecking=no -r /home/circleci/project/.next/* $DROPLET_USER@$DROPLET_IP:/home/circleci
+      - run: scp -oStrictHostKeyChecking=no -r /home/circleci/project/dev-conf/.next/* $DROPLET_USER@$DROPLET_IP:/home/circleci/dev-conf
 
       #- run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/deploy_project.sh"
 
