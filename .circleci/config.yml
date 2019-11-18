@@ -2,14 +2,21 @@ version: 2
 jobs:
   deploy-prod:
     docker:
-    # specify the version you desire here (you might not want node)
       - image: circleci/node
+    environment: 
+      GOOGLE_MAPS_API: $GOOGLE_MAPS_API
+      REDIS_HOST: localhost
+      REDIS_PORT: 6379
+      
     steps:
       - checkout
-      - run: npm i && npm run build
-      - run: pwd
-      - run: ls
-      - run: scp -oStrictHostKeyChecking=no -r /home/circleci/project/.next/* $DROPLET_USER@$DROPLET_IP:/home/circleci/conf-hub/.next/
+      - run:
+        command: |
+          npm i && npm run build
+          pwd
+          ls
+          scp -oStrictHostKeyChecking=no -r /home/circleci/project/.next/* $DROPLET_USER@$DROPLET_IP:/home/circleci/conf-hub/.next/
+          pm2 start --name "conf-hub" npm -- start
 
       #- run: ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP "/deploy_project.sh"
 
