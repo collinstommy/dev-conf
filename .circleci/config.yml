@@ -16,8 +16,7 @@ jobs:
             pwd
             ls
             scp -oStrictHostKeyChecking=no -r /home/circleci/project/.next/* $DROPLET_USER@$DROPLET_IP:/home/circleci/conf-hub/.next/
-            scp -oStrictHostKeyChecking=no -r /home/circleci/project/node_modules/* $DROPLET_USER@$DROPLET_IP:/home/circleci/conf-hub/node_modules/
-            ssh -oStrictHostKeyChecking=no -v $DROPLET_USER@$DROPLET_IP 'cd /home/circleci/conf-hub && pm2 start --name "conf-hub" "next start"'
+
 
 workflows:
   version: 2
